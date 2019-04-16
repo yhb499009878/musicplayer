@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>歌单 | Music Player</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+</head>
+
+<body class="hold-transition skin-red layout-top-nav">
+<div class="wrapper">
+
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand"><b>Music</b>Player</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">首页</a></li>
+            <li class="active"><a href="list.html">歌单</a></li>
+            <li><a href="player.html">播放器</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="searchbar" placeholder="搜索歌曲/歌手">
+            </div>
+          </form>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+			<li class="user user-menu">
+                <a href="#" class="" data-toggle="modal" data-target="#signin">
+                  <span id="li_span_signin">登录</span>
+                </a>
+              </li>
+              <li class="user user-menu" id="li_signup">
+                <a href="#" class="" data-toggle="modal" data-target="#signup">
+                  <span>注册</span>
+                </a>
+              </li>
+              <li class="user user-menu" id="li_signout" style="display: none">
+                <a href="#">
+                  <span>退出</span>
+                </a>
+              </li>
+          </ul>
+        </div>
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          歌单
+          <small>Music Player</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+          <li class="active">歌单</li>
+        </ol>
+      </section>
+      <!-- /.content -->
+
+      <!-- Main content -->
+    <section class="content">
+
+      <div class="row">
+        <div class="col-md-3">
+            <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">语种</h3>
+            </div>
+            <div class="box-body">
+              <button type="button" class="btn  btn-default btn-sm">华语</button>
+              <button type="button" class="btn  btn-default btn-sm">欧美</button>
+              <button type="button" class="btn  btn-default btn-sm">粤语</button>
+              <button type="button" class="btn  btn-default btn-sm">日语</button>
+              <button type="button" class="btn  btn-default btn-sm">韩语</button>
+              <button type="button" class="btn  btn-default btn-sm">小语种</button>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">风格</h3>
+            </div>
+            <div class="box-body">
+              <button type="button" class="btn  btn-default btn-sm">流行</button>
+              <button type="button" class="btn  btn-default btn-sm">摇滚</button>
+              <button type="button" class="btn  btn-default btn-sm">民谣</button>
+              <button type="button" class="btn  btn-default btn-sm">电子</button>
+              <button type="button" class="btn  btn-default btn-sm">影视原音</button>
+              <button type="button" class="btn  btn-default btn-sm">ACG</button>
+              <button type="button" class="btn  btn-default btn-sm">轻音乐</button>
+              <button type="button" class="btn  btn-default btn-sm">新世界</button>
+              <button type="button" class="btn  btn-default btn-sm">爵士</button>
+              <button type="button" class="btn  btn-default btn-sm">古典</button>
+              <button type="button" class="btn  btn-default btn-sm">乡村</button>
+              <button type="button" class="btn  btn-default btn-sm">说唱</button>
+              <button type="button" class="btn  btn-default btn-sm">世界音乐</button>
+              <button type="button" class="btn  btn-default btn-sm">古风</button>
+              <button type="button" class="btn  btn-default btn-sm">儿歌</button>
+              <button type="button" class="btn  btn-default btn-sm">朋克</button>
+              <button type="button" class="btn  btn-default btn-sm">布鲁斯</button>
+              <button type="button" class="btn  btn-default btn-sm">金属</button>
+              <button type="button" class="btn  btn-default btn-sm">英伦</button>
+              <button type="button" class="btn  btn-default btn-sm">民族</button>
+              <button type="button" class="btn  btn-default btn-sm">拉丁</button>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">情感</h3>
+            </div>
+            <div class="box-body">
+              <button type="button" class="btn  btn-default btn-sm">快乐</button>
+              <button type="button" class="btn  btn-default btn-sm">美好</button>
+              <button type="button" class="btn  btn-default btn-sm">安静</button>
+              <button type="button" class="btn  btn-default btn-sm">伤感</button>
+              <button type="button" class="btn  btn-default btn-sm">寂寞</button>
+              <button type="button" class="btn  btn-default btn-sm">思念</button>
+              <button type="button" class="btn  btn-default btn-sm">孤独</button>
+              <button type="button" class="btn  btn-default btn-sm">怀旧</button>
+              <button type="button" class="btn  btn-default btn-sm">悲伤</button>
+              <button type="button" class="btn  btn-default btn-sm">感动</button>
+              <button type="button" class="btn  btn-default btn-sm">治愈</button>
+              <button type="button" class="btn  btn-default btn-sm">放松</button>
+              <button type="button" class="btn  btn-default btn-sm">清新</button>
+              <button type="button" class="btn  btn-default btn-sm">浪漫</button>
+              <button type="button" class="btn  btn-default btn-sm">兴奋</button>
+              <button type="button" class="btn  btn-default btn-sm">性感</button>
+              <button type="button" class="btn  btn-default btn-sm">励志</button>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">场景</h3>
+            </div>
+            <div class="box-body">
+              <button type="button" class="btn  btn-default btn-sm">运动</button>
+              <button type="button" class="btn  btn-default btn-sm">驾驶</button>
+              <button type="button" class="btn  btn-default btn-sm">学习</button>
+              <button type="button" class="btn  btn-default btn-sm">工作</button>
+              <button type="button" class="btn  btn-default btn-sm">清晨</button>
+              <button type="button" class="btn  btn-default btn-sm">夜晚</button>
+              <button type="button" class="btn  btn-default btn-sm">午后</button>
+              <button type="button" class="btn  btn-default btn-sm">游戏</button>
+              <button type="button" class="btn  btn-default btn-sm">旅行</button>
+              <button type="button" class="btn  btn-default btn-sm">散步</button>
+              <button type="button" class="btn  btn-default btn-sm">酒吧</button>
+              <button type="button" class="btn  btn-default btn-sm">夜店</button>
+              <button type="button" class="btn  btn-default btn-sm">咖啡厅</button>
+              <button type="button" class="btn  btn-default btn-sm">地铁</button>
+              <button type="button" class="btn  btn-default btn-sm">校园</button>
+              <button type="button" class="btn  btn-default btn-sm">婚礼</button>
+              <button type="button" class="btn  btn-default btn-sm">约会</button>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">主题</h3>
+            </div>
+            <div class="box-body">
+              <button type="button" class="btn  btn-default btn-sm">经典</button>
+              <button type="button" class="btn  btn-default btn-sm">翻唱</button>
+              <button type="button" class="btn  btn-default btn-sm">榜单</button>
+              <button type="button" class="btn  btn-default btn-sm">现场</button>
+              <button type="button" class="btn  btn-default btn-sm">KTV</button>
+              <button type="button" class="btn  btn-default btn-sm">DJ</button>
+              <button type="button" class="btn  btn-default btn-sm">网络歌曲</button>
+              <button type="button" class="btn  btn-default btn-sm">器乐</button>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div> 
+        <div class="col-md-9">
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">最新歌单</h3>
+            </div>
+            <div class="box-body">
+              <div class="margin-bottom">
+              		<div id="musicList" class="row">
+                      </div>
+                  </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div> 
+         
+      </div> 
+    </section>       
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 1.0.0
+      </div>
+      <strong>Copyright &copy; 2017.</strong> All rights reserved.
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- Modal -->
+<div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="signinLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="signinLabel">登录</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+                  <label for="username">用户名</label>
+                  <input type="text" class="form-control" id="signin_username" placeholder="输入用户名">
+                  <label for="password">密码</label>
+                  <input type="password" class="form-control" id="signin_password" placeholder="输入密码">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-danger"  id="signin_button">登录</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signupLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="signupLabel">注册</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+                 <label for="username">用户名</label>
+                  <input type="text" class="form-control" id="signup_username" placeholder="输入用户名">
+                  <label for="password">密码</label>
+                  <input type="password" class="form-control" id="signup_password" placeholder="输入密码">
+                  <label for="password">确认密码</label>
+                  <input type="password" class="form-control" id="signup_password2" placeholder="再次输入密码">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button"  id="signup_button" class="btn btn-danger">注册</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="plugins/fastclick/fastclick.js"></script>
+<script src="dist/js/app.min.js"></script>
+<script src="dist/js/demo.js"></script>
+<script src="js/base.js"></script>
+<script src="js/user.js"></script>
+<script src="js/list.js"></script>
+<script src="js/searchbar.js"></script>
+</body>
+</html>

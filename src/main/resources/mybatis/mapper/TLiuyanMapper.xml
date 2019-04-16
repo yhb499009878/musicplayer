@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.TLiuyanMapper" >
+  <resultMap id="BaseResultMap" type="com.airlab.musicplayer.model.musicinfo.TLiuyan" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="descs" property="descs" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="TIMESTAMP" />
+    <result column="names" property="names" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, descs, times, names, create_time, update_time
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from liuyan
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long" >
+    delete from liuyan
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.airlab.musicplayer.model.musicinfo.TLiuyan" useGeneratedKeys="true" keyProperty="id">
+    insert into liuyan (descs, times, 
+      names, create_time, update_time
+      )
+    values (#{descs,jdbcType=VARCHAR}, #{times,jdbcType=TIMESTAMP}, 
+      #{names,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateById" parameterType="com.airlab.musicplayer.model.musicinfo.TLiuyan" >
+    update liuyan
+    <set >
+      <if test="descs != null" >
+        descs = #{descs,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=TIMESTAMP},
+      </if>
+      <if test="names != null" >
+        names = #{names,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

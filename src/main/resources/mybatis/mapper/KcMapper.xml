@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.KcMapper" >
+  <resultMap id="BaseResultMap" type="com.airlab.musicplayer.model.musicinfo.Kc" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="names" property="names" jdbcType="VARCHAR" />
+    <result column="zjr" property="zjr" jdbcType="VARCHAR" />
+    <result column="xx" property="xx" jdbcType="VARCHAR" />
+    <result column="descs" property="descs" jdbcType="VARCHAR" />
+    <result column="bfcs" property="bfcs" jdbcType="INTEGER" />
+    <result column="plcs" property="plcs" jdbcType="INTEGER" />
+    <result column="sccs" property="sccs" jdbcType="INTEGER" />
+    <result column="url1" property="url1" jdbcType="VARCHAR" />
+    <result column="url2" property="url2" jdbcType="VARCHAR" />
+    <result column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="tnames" property="tnames" jdbcType="VARCHAR" />
+    <result column="ishy" property="ishy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, names, zjr, xx, descs, bfcs, plcs, sccs, url1, url2, tid, tnames, ishy, create_time, 
+    update_time
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from kc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long" >
+    delete from kc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.airlab.musicplayer.model.musicinfo.Kc" useGeneratedKeys="true" keyProperty="id">
+    insert into kc (names, zjr, 
+      xx, descs, bfcs, plcs, 
+      sccs, url1, url2, tid, 
+      tnames, ishy, create_time, 
+      update_time)
+    values (#{names,jdbcType=VARCHAR}, #{zjr,jdbcType=VARCHAR}, 
+      #{xx,jdbcType=VARCHAR}, #{descs,jdbcType=VARCHAR}, #{bfcs,jdbcType=INTEGER}, #{plcs,jdbcType=INTEGER}, 
+      #{sccs,jdbcType=INTEGER}, #{url1,jdbcType=VARCHAR}, #{url2,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, 
+      #{tnames,jdbcType=VARCHAR}, #{ishy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateById" parameterType="com.airlab.musicplayer.model.musicinfo.Kc" >
+    update kc
+    <set >
+      <if test="names != null" >
+        names = #{names,jdbcType=VARCHAR},
+      </if>
+      <if test="zjr != null" >
+        zjr = #{zjr,jdbcType=VARCHAR},
+      </if>
+      <if test="xx != null" >
+        xx = #{xx,jdbcType=VARCHAR},
+      </if>
+      <if test="descs != null" >
+        descs = #{descs,jdbcType=VARCHAR},
+      </if>
+      <if test="bfcs != null" >
+        bfcs = #{bfcs,jdbcType=INTEGER},
+      </if>
+      <if test="plcs != null" >
+        plcs = #{plcs,jdbcType=INTEGER},
+      </if>
+      <if test="sccs != null" >
+        sccs = #{sccs,jdbcType=INTEGER},
+      </if>
+      <if test="url1 != null" >
+        url1 = #{url1,jdbcType=VARCHAR},
+      </if>
+      <if test="url2 != null" >
+        url2 = #{url2,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="tnames != null" >
+        tnames = #{tnames,jdbcType=VARCHAR},
+      </if>
+      <if test="ishy != null" >
+        ishy = #{ishy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ResourceInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.airlab.musicplayer.model.ResourceInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="system_file_name" property="systemFileName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="mime_type" property="mimeType" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="BIGINT" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="md5" property="md5" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, resource_id, file_name, system_file_name, user_id, mime_type, size, file_path, 
+    md5, create_time, update_time, status
+  </sql>
+  
+  <select id="selectByResourceId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from resource where resource_id = #{resourceId}
+   </select>
+   
+   <select id="queryPartsResourceInfoByResourceId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from resource where resource_id like #{resourceId}
+	</select>
+	
+	<delete id="deletePartsResourceInfoByResourceId" parameterType="java.lang.String">
+		delete from resource
+		where resource_id like #{resourceId}
+	</delete>
+	
+	<select id="queryByParams"  parameterType="map" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		
+		from resource where 1=1 
+		
+      	<if test="status != null" >
+        	and status = #{status, jdbcType=INTEGER}
+      	</if>
+      	
+      	<if test="resourceId != null" >
+        	and resource_id = #{resourceId, jdbcType=VARCHAR}
+      	</if>
+      	
+      	<if test="md5 != null" >
+        	and md5 = #{md5, jdbcType=VARCHAR}
+      	</if>
+
+      	<if test="fileName != null" >
+        	and file_name = #{fileName, jdbcType=VARCHAR}
+      	</if>
+      	      	
+      	order by id
+	</select>
+	
+	<select id="selectByResourceIdList" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from resource where resource_id in
+		<foreach item="item" index="index" collection="resourceIdList"
+						open="(" separator="," close=")">
+						#{item}
+				</foreach>
+	</select>
+	
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long" >
+    delete from resource
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.airlab.musicplayer.model.ResourceInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into resource (id, resource_id, file_name, 
+      system_file_name, user_id, mime_type, 
+      size, file_path, md5, 
+      create_time, update_time, status
+      )
+    values (#{id,jdbcType=BIGINT}, #{resourceId,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, 
+      #{systemFileName,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{mimeType,jdbcType=VARCHAR}, 
+      #{size,jdbcType=BIGINT}, #{filePath,jdbcType=VARCHAR}, #{md5,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateById" parameterType="com.airlab.musicplayer.model.ResourceInfo" >
+    update resource
+    <set >
+      <if test="resourceId != null" >
+        resource_id = #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemFileName != null" >
+        system_file_name = #{systemFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="mimeType != null" >
+        mime_type = #{mimeType,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="filePath != null" >
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="md5 != null" >
+        md5 = #{md5,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

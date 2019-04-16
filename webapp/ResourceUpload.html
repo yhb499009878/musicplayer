@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传资源文件测试</title>
+</head>
+<body>
+<input type="file" id="file" name="file" onchange="upload(this)">
+<input type="text" id="appIconResourceId" name="appIconResourceId" >
+<input type="text" id="iconImg" name="iconImg" >
+
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+</body>
+<script type="text/javascript">
+    function upload(evt){
+        var url = "/music/manager/resource/uploadResource";
+        var files = evt.files;
+        var file = files[0];
+
+        if(file){
+            var formData = new FormData();
+            formData.append("file",file);
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    var resourceInfo = data.result;
+                    if(data.errcode == 0){
+                        if(resourceInfo){
+                            var resourceId = resourceInfo.resourceId;
+                            var filePath = resourceInfo.filePath;
+                            $("#appIconResourceId").val(resourceId);
+                            $("#iconImg").val(filePath);
+                        }
+                    }else{
+                        alert(data.errmsg);
+                    }
+                    evt.outerHTML=evt.outerHTML;
+                }
+            });
+        }
+    }
+</script>
+</html>

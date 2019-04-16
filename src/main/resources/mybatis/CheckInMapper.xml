@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comisys.lanxin.dao.CheckInDao">
+	<resultMap id="BaseResultMap" type="com.comisys.lanxin.model.CheckIn">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="user_uni_id" property="userUniId" jdbcType="VARCHAR" />
+		<result column="location" property="location" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="DOUBLE" />
+		<result column="longitude" property="longitude" jdbcType="DOUBLE" />
+		<result column="wifi_ssid" property="wifiSsid" jdbcType="VARCHAR" />
+		<result column="wifi_bssid" property="wifiBssid" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="BIGINT" />
+		<result column="modify_time" property="modifyTime" jdbcType="BIGINT" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,org_id, user_id, user_name, user_uni_id, location,
+		latitude, longitude,
+		wifi_ssid, wifi_bssid, create_time, modify_time,
+		status
+	</sql>
+	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from check_in_t
+		where id = #{id}
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.Long">
+		delete from check_in_t
+		where id = #{id}
+	</delete>
+
+	<insert id="insert" parameterType="com.comisys.lanxin.model.CheckIn"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into check_in_t (org_id,
+		user_id, user_name, user_uni_id, location,
+		latitude, longitude,
+		wifi_ssid, wifi_bssid, create_time, modify_time,
+		status)
+		values
+		(#{orgId},#{userId}, #{userName},
+		#{userUniId},#{location},#{latitude},#{longitude},#{wifiSsid},#{wifiBssid},
+		#{createTime},#{modifyTime},#{status})
+	</insert>
+
+
+	<update id="updateById" parameterType="com.comisys.lanxin.model.CheckIn">
+		update check_in_t
+		set
+		org_id = #{orgId},
+		user_id = #{userId},
+		user_name = #{userName},
+		user_uni_id = #{userUniId},
+		location = #{location},
+		latitude =
+		#{latitude},
+		longitude = #{longitude},
+		wifi_ssid = #{wifiSsid},
+		wifi_bssid = #{wifiBssid},
+		create_time = #{createTime},
+		modify_time =
+		#{modifyTime},
+		status = #{status}
+		where id = #{id}
+	</update>
+
+	<select id="queryByParams" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from check_in_t
+		where 1=1
+		<if test="userId != null">
+			and user_id = #{userId}
+		</if>
+
+		<if test="orgId != null">
+			and org_id =#{orgId}
+		</if>
+
+		<if test="userName != null">
+			and user_name =#{userName}
+		</if>
+
+		<if test="startTime != null">
+	   	<![CDATA[
+				AND create_time >= #{startTime}
+		]]>
+		</if>
+
+		<if test="endTime != null">
+	  	<![CDATA[
+				AND create_time <= #{endTime}
+		]]>
+		</if>
+
+		<if test="status >= 0">
+			and status = #{status}
+		</if>
+
+		order by create_time desc
+	</select>
+</mapper>
